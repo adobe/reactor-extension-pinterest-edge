@@ -1,0 +1,309 @@
+{
+  "displayName": "Pinterest",
+  "name": "pinterest-connector-edge",
+  "iconPath": "resources/icons/pinterest-logo.svg",
+  "platform": "edge",
+  "version": "1.0.0",
+  "description": "Forward data to Pinterest by using the User Data API.",
+  "author": {
+    "name": "Adobe",
+    "url": "http://adobe.com"
+  },
+  "viewBasePath": "dist/",
+  "configuration": {
+    "viewPath": "configuration/configuration.html",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "properties": {
+        "adAccountId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "conversionAccessToken": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false,
+      "required": ["adAccountId", "conversionAccessToken"]
+    }
+  },
+  "actions": [
+    {
+      "displayName": "Send Event",
+      "name": "send-event",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {
+          "user_identification": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "em": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "client_ip_address": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "client_user_agent": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "hashed_maids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                },
+                "required": ["em"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "em": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "client_ip_address": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "client_user_agent": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "hashed_maids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                },
+                "required": ["hashed_maids"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "em": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "client_ip_address": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "client_user_agent": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "hashed_maids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                },
+                "required": ["client_ip_address", "client_user_agent"],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "user_data": {
+            "type": "object",
+            "properties": {
+              "ph": {
+                "type": "string",
+                "minLength": 1
+              },
+              "ge": {
+                "type": "string",
+                "minLength": 1
+              },
+              "db": {
+                "type": "string",
+                "minLength": 1
+              },
+              "ln": {
+                "type": "string",
+                "minLength": 1
+              },
+              "fn": {
+                "type": "string",
+                "minLength": 1
+              },
+              "ct": {
+                "type": "string",
+                "minLength": 1
+              },
+              "st": {
+                "type": "string",
+                "minLength": 1
+              },
+              "zp": {
+                "type": "string",
+                "minLength": 1
+              },
+              "country": {
+                "type": "string",
+                "minLength": 1
+              },
+              "external_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "click_id": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "additionalProperties": false
+          },
+          "event": {
+            "type": "object",
+            "properties": {
+              "event_name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "action_source": {
+                "type": "string",
+                "minLength": 1
+              },
+              "event_time": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "type": "number"
+                  }
+                ]
+              },
+              "event_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "properties": {
+                "type": "object",
+                "properties": {
+                  "event_source_url": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "app_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "app_name": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "app_version": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "device_brand": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "device_carrier": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "device_model": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "device_type": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "language": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "os_version": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "event_name",
+              "action_source",
+              "event_time",
+              "event_id"
+            ]
+          },
+          "custom_data": {
+            "type": "object",
+            "properties": {
+              "currency": {
+                "type": "string",
+                "minLength": 1
+              },
+              "value": {
+                "type": "string",
+                "minLength": 1
+              },
+              "search_string": {
+                "type": "string",
+                "minLength": 1
+              },
+              "order_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "num_items": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "type": "number"
+                  }
+                ]
+              },
+              "contents": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              },
+              "content_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            "additionalProperties": false
+          },
+          "isTestEvent": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "libPath": "src/lib/actions/sendEvent.js",
+      "viewPath": "actions/sendEvent.html"
+    }
+  ]
+}

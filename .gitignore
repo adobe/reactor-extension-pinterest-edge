@@ -1,0 +1,9 @@
+node_modules
+coverage
+test_results
+dist
+.sandbox
+.entries
+adobe-reactor-extension-pinterest-edge-*.tgz
+package-pinterest-connector-edge-*.zip
+.eslintcache
