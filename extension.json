@@ -9,6 +9,7 @@
     "name": "Adobe",
     "url": "http://adobe.com"
   },
+  "exchangeUrl": "https://exchange.adobe.com/apps/ec/109697/pinterest-event-forwarding-extension",
   "viewBasePath": "dist/",
   "configuration": {
     "viewPath": "configuration/configuration.html",
