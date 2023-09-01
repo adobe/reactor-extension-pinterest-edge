@@ -3,7 +3,7 @@
   "name": "pinterest-connector-edge",
   "iconPath": "resources/icons/pinterest-logo.svg",
   "platform": "edge",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Forward data to Pinterest by using the User Data API.",
   "author": {
     "name": "Adobe",
@@ -282,17 +282,33 @@
                 ]
               },
               "contents": {
-                "type": "array",
-                "items": {
-                  "type": "object"
-                }
+                "anyOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "object"
+                    }
+                  },
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                ]
               },
               "content_ids": {
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "minLength": 1
-                }
+                "anyOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                ]
               }
             },
             "additionalProperties": false
