@@ -9,7 +9,7 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-import { screen } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import renderView from '../../__tests_helpers__/renderView';
 
 import SendEvent from '../sendEvent';
@@ -182,6 +182,62 @@ describe('Send Event view', () => {
       },
       isTestEvent: true
     });
+  });
+
+  test('sets form values from settings when custom_data is a data element', async () => {
+    renderView(SendEvent);
+
+    extensionBridge.init({
+      settings: {
+        event: {
+          event_name: 'add_to_cart',
+          action_source: 'web',
+          event_time: 1
+        },
+        custom_data: '{{myDataElement}}'
+      }
+    });
+
+    const { customDataRawTextarea } = getFormFields();
+
+    expect(customDataRawTextarea.value).toBe('{{myDataElement}}');
+  });
+
+  test('sets settings from form values when custom_data is a data element', async () => {
+    renderView(SendEvent);
+
+    extensionBridge.init();
+
+    const { customDataRawTextarea } = getFormFields();
+
+    fireEvent.change(customDataRawTextarea, {
+      target: { value: '{{myDataElement}}' }
+    });
+
+    expect(extensionBridge.getSettings()).toMatchObject({
+      custom_data: '{{myDataElement}}'
+    });
+  });
+
+  test('validates successfully when custom_data is a data element', async () => {
+    renderView(SendEvent);
+
+    extensionBridge.init({
+      settings: {
+        event: {
+          event_name: 'add_to_cart',
+          action_source: 'web',
+          event_time: 1
+        },
+        custom_data: '{{myDataElement}}'
+      }
+    });
+
+    const { customDataRawTextarea } = getFormFields();
+
+    await extensionBridge.validate();
+
+    expect(customDataRawTextarea).not.toHaveAttribute('aria-invalid', 'true');
   });
 
   test('handles form validation correctly', async () => {
