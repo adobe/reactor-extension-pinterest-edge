@@ -11,17 +11,18 @@ governing permissions and limitations under the License.
 */
 
 import path from 'path';
+import { readFileSync } from 'fs';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-
-import extension from './extension.json' with { type: 'json' };
 import camelCase from 'camelcase';
 import capitalize from 'capitalize';
 import createEntryFile from './createEntryFile.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
+const extension = JSON.parse(readFileSync('./extension.json', 'utf-8'));
 const entries = {};
 const plugins = [];
 
