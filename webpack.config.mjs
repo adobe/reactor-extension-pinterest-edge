@@ -15,7 +15,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
-import extension from './extension.json' assert { type: 'json' };
+import extension from './extension.json' with { type: 'json' };
 import camelCase from 'camelcase';
 import capitalize from 'capitalize';
 import createEntryFile from './createEntryFile.mjs';
