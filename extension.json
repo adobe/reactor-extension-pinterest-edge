@@ -252,66 +252,74 @@
             ]
           },
           "custom_data": {
-            "type": "object",
-            "properties": {
-              "currency": {
+            "anyOf": [
+              {
                 "type": "string",
                 "minLength": 1
               },
-              "value": {
-                "type": "string",
-                "minLength": 1
-              },
-              "search_string": {
-                "type": "string",
-                "minLength": 1
-              },
-              "order_id": {
-                "type": "string",
-                "minLength": 1
-              },
-              "num_items": {
-                "anyOf": [
-                  {
+              {
+                "type": "object",
+                "properties": {
+                  "currency": {
                     "type": "string",
                     "minLength": 1
                   },
-                  {
-                    "type": "number"
-                  }
-                ]
-              },
-              "contents": {
-                "anyOf": [
-                  {
-                    "type": "array",
-                    "items": {
-                      "type": "object"
-                    }
-                  },
-                  {
+                  "value": {
                     "type": "string",
                     "minLength": 1
-                  }
-                ]
-              },
-              "content_ids": {
-                "anyOf": [
-                  {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "minLength": 1
-                    }
                   },
-                  {
+                  "search_string": {
                     "type": "string",
                     "minLength": 1
+                  },
+                  "order_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "num_items": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ]
+                  },
+                  "contents": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "object"
+                        }
+                      },
+                      {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    ]
+                  },
+                  "content_ids": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    ]
                   }
-                ]
+                },
+                "additionalProperties": false
               }
-            },
-            "additionalProperties": false
+            ]
           },
           "isTestEvent": {
             "type": "boolean"

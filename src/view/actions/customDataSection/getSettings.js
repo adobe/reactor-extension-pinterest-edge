@@ -32,6 +32,10 @@ export default ({ customDataType, customDataRaw, customDataJsonPairs }) => {
       data = null;
     }
   } else {
+    if (isDataElementToken(customDataRaw)) {
+      return { custom_data: customDataRaw };
+    }
+
     try {
       data = JSON.parse(customDataRaw);
     } catch {
